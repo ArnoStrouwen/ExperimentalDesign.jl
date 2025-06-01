@@ -1,4 +1,4 @@
-name: CI
+name: Documentation
 on:
   push:
     branches:
@@ -26,17 +26,17 @@ jobs:
           version: '1'
       - uses: julia-actions/cache@v2
       - name: Configure doc environment Part 1 (workaround not registered yet)
-        shell: julia --project=lib/FullFactorialDesign
+        shell: julia --project=lib/FullFactorialDesign {0}
         run: |
           using Pkg
           Pkg.develop(path=joinpath("lib","ExperimentalDesignBase"))
       - name: Configure doc environment Part 2 (workaround not registered yet)
-        shell: julia --project=.
+        shell: julia --project=. {0}
         run: |
           using Pkg
           Pkg.develop(path=joinpath("lib","FullFactorialDesign"))
       - name: Configure doc environment Part 3 (workaround not registered yet)
-        shell: julia --project=docs
+        shell: julia --project=docs {0}
         run: |
           using Pkg
           Pkg.develop(path=".")
