@@ -1,4 +1,4 @@
-name: CI Base
+name: CI Full Factorial
 on:
   push:
     branches:
@@ -38,19 +38,21 @@ jobs:
           arch: ${{ matrix.arch }}
       - uses: julia-actions/cache@v2
       - name: Configure test environment
-        shell: julia --project=lib/FullFactorialDesign
+        shell: julia --project=lib/FullFactorialDesign {0}
         run: |
           using Pkg
           Pkg.develop(path=joinpath("lib","ExperimentalDesignBase"))
           Pkg.instantiate()
       - uses: julia-actions/julia-buildpkg@v1
+        with:
+          project: lib/FullFactorialDesign
       - uses: julia-actions/julia-runtest@v1
         with:
-          lib: lib/FullFactorialDesign
+          project: lib/FullFactorialDesign
           annotate: true
       - uses: julia-actions/julia-processcoverage@v1
       - uses: codecov/codecov-action@v5
         with:
           files: lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false
+          fail_ci_if_error: true
