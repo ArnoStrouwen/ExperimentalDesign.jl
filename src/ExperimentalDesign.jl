@@ -1,5 +1,6 @@
 module ExperimentalDesign
 
-# Write your package code here.
+using Reexport
+@reexport using FullFactorialDesign
 
 end

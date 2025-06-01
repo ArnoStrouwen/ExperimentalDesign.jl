@@ -1,2 +1,5 @@
 # See https://domluna.github.io/JuliaFormatter.jl/stable/ for a list of options
 style = "blue"
+margin = 120
+format_markdown = true
+format_docstrings = true

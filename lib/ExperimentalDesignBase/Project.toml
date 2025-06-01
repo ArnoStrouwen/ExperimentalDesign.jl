@@ -1,15 +1,12 @@
-name = "ExperimentalDesign"
-uuid = "c78da7b5-e525-4771-9180-c9238974bf82"
+name = "ExperimentalDesignBase"
+uuid = "2b911bfd-1bd4-4cca-932d-622e9f1ec094"
 authors = ["Arno Strouwen <contact@arnostrouwen.com>"]
 version = "0.0.1"
 
-[deps]
-FullFactorialDesign = "f11495e4-de19-4530-b09f-672062b0020a"
-Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
-
 [compat]
-FullFactorialDesign = "0.0.1"
-Reexport = "1"
+Aqua = "0.8"
+JET = "0.9"
+Test = "1.10"
 julia = "1.10"
 
 [extras]

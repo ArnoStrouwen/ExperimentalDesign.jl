@@ -8,16 +8,9 @@ makedocs(;
     authors="Arno Strouwen <contact@arnostrouwen.com>",
     sitename="ExperimentalDesign.jl",
     format=Documenter.HTML(;
-        canonical="https://ArnoStrouwen.github.io/ExperimentalDesign.jl",
-        edit_link="master",
-        assets=String[],
+        canonical="https://ArnoStrouwen.github.io/ExperimentalDesign.jl", edit_link="master", assets=String[]
     ),
-    pages=[
-        "Home" => "index.md",
-    ],
+    pages=["Home" => "index.md"],
 )
 
-deploydocs(;
-    repo="github.com/ArnoStrouwen/ExperimentalDesign.jl",
-    devbranch="master",
-)
+deploydocs(; repo="github.com/ArnoStrouwen/ExperimentalDesign.jl", devbranch="master")

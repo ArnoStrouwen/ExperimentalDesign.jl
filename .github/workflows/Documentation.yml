@@ -1,0 +1,48 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+jobs:
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write # needed to allow julia-actions/cache to proactively delete old caches that it has created
+      contents: write
+      statuses: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1'
+      - uses: julia-actions/cache@v2
+      - name: Configure doc environment Part 1 (workaround not registered yet)
+        shell: julia --project=lib/FullFactorialDesign
+        run: |
+          using Pkg
+          Pkg.develop(path=joinpath("lib","ExperimentalDesignBase"))
+      - name: Configure doc environment Part 2 (workaround not registered yet)
+        shell: julia --project=.
+        run: |
+          using Pkg
+          Pkg.develop(path=joinpath("lib","FullFactorialDesign"))
+      - name: Configure doc environment Part 3 (workaround not registered yet)
+        shell: julia --project=docs
+        run: |
+          using Pkg
+          Pkg.develop(path=".")
+          Pkg.instantiate()
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-docdeploy@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}

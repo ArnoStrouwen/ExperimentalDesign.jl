@@ -1,0 +1,26 @@
+name = "FullFactorialDesign"
+uuid = "f11495e4-de19-4530-b09f-672062b0020a"
+authors = ["Arno Strouwen"]
+version = "0.0.1"
+
+[deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+ExperimentalDesignBase = "2b911bfd-1bd4-4cca-932d-622e9f1ec094"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+
+[compat]
+Aqua = "0.8"
+DataFrames = "1"
+ExperimentalDesignBase = "0.0.1"
+JET = "0.9"
+Reexport = "1"
+Test = "1.10"
+julia = "1.10"
+
+[extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+JET = "c3a54625-cd67-489e-a8e7-0a5a0ff4e31b"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Aqua", "JET", "Test"]
