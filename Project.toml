@@ -1,9 +1,10 @@
 name = "ExperimentalDesign"
 uuid = "c78da7b5-e525-4771-9180-c9238974bf82"
-authors = ["Arno Strouwen <contact@arnostrouwen.com>"]
 version = "0.0.1"
+authors = ["Arno Strouwen <contact@arnostrouwen.com>"]
 
 [deps]
+ExperimentalDesignBase = "2b911bfd-1bd4-4cca-932d-622e9f1ec094"
 FullFactorialDesign = "f11495e4-de19-4530-b09f-672062b0020a"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 

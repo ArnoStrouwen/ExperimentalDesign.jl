@@ -25,6 +25,9 @@ jobs:
         with:
           version: '1'
       - uses: julia-actions/cache@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Configure doc environment Part 1 (workaround not registered yet)
         shell: julia --project=lib/FullFactorialDesign {0}
         run: |
@@ -34,12 +37,19 @@ jobs:
         shell: julia --project=. {0}
         run: |
           using Pkg
-          Pkg.develop(path=joinpath("lib","FullFactorialDesign"))
+          Pkg.develop([
+            PackageSpec(path=joinpath("lib","ExperimentalDesignBase")),
+            PackageSpec(path=joinpath("lib","FullFactorialDesign"))
+          ])
       - name: Configure doc environment Part 3 (workaround not registered yet)
         shell: julia --project=docs {0}
         run: |
           using Pkg
-          Pkg.develop(path=".")
+          Pkg.develop([
+            PackageSpec(path=joinpath("lib","ExperimentalDesignBase")),
+            PackageSpec(path=joinpath("lib","FullFactorialDesign")),
+            PackageSpec(path=".")
+          ])
           Pkg.instantiate()
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-docdeploy@v1
