@@ -1,4 +1,4 @@
-name: CI Full Factorial
+name: CI FullFactorialDesign
 on:
   push:
     branches:
